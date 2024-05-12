@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function TodoInput ({onSubmit}) {
+function Todoform ({onSubmit}) {
     const [value, setValue] = useState('');
 
     const handleSubmit = () =>{
@@ -14,4 +14,4 @@ function TodoInput ({onSubmit}) {
     </div>
 }
 
-export default TodoInput;
+export default Todoform;

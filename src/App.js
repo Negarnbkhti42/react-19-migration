@@ -1,24 +1,34 @@
 import { useState } from 'react';
 import './App.css';
-import TodoInput from './components/TodoInput';
+import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 
 function App() {
   const [items, setItems] = useState([
     {
-      title: 'preparing KS docs'
+      title: 'preparing KS docs',
+      completed: false,
     },
     {
-      title: 'debugging features'
+      title: 'debugging features',
+      completed: true,
     }
   ])
 
-  const addToDo = (newValue) => {
-    setItems(prevState => [...prevState, {title: newValue}])
+  const addToDo = (newItem) => {
+    setItems(prevState => [...prevState, {title: newItem, completed: false}])
+  }
+
+  const onClickOnItem = (index) => {
+    
+    setItems(prevState => {
+
+      return [...prevState.slice(0, index),{...prevState[index], completed: !prevState[index].completed}, ...prevState.slice(index + 1)];
+    })
   }
   return <>
-  <TodoList items={items} />
-  <TodoInput onSubmit={addToDo} />
+  <TodoList items={items}  onClick={onClickOnItem} />
+  <TodoForm onSubmit={addToDo} />
   </>
 }
 
